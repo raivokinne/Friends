@@ -1,0 +1,18 @@
+package layout
+
+templ BaseLayout(title string) {
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="UTF-8"/>
+			<title>{ title }</title>
+			<script src="https://unpkg.com/htmx.org@1.9.10"></script>
+			<link rel="stylesheet" href="/dist/output.css"/>
+		</head>
+		<body>
+			<main class="h-screen width-screen">
+				{ children... }
+			</main>
+		</body>
+	</html>
+}
