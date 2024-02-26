@@ -23,7 +23,7 @@ func Navbar() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<nav class=\"flex items-center justify-center bg-white border-gray-200 border-b h-[80px]\"><div class=\"flex justify-between items-center w-full mx-[100px]\"><div><a href=\"/\" class=\"text-black\">Friends</a></div><div><input type=\"text\" placeholder=\"Search\" class=\"w-[800px] p-2 rounded-full border-gray-500 border text-black\"></div><ul class=\"flex gap-4\"><li><a href=\"/profile\" class=\"text-black\">Profile</a></li><li><a href=\"/logout\" class=\"text-black\">Logout</a></li></ul></div></nav>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<nav className=\"flex items-center justify-center bg-white border-gray-200 border-b h-[80px]\"><div className=\"flex justify-between items-center w-full mx-[100px]\"><div><a href=\"/\" className=\"text-black\">Friends</a></div><div><input type=\"text\" placeholder=\"Search\" className=\"w-[800px] p-2 rounded-full border-gray-500 border text-black\"></div><ul className=\"flex gap-4\"><li><a href=\"/profile\" className=\"text-black\">Profile</a></li><li><a href=\"/logout\" className=\"text-black\">Logout</a></li></ul></div></nav>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

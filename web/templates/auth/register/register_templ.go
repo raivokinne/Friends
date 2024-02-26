@@ -11,7 +11,7 @@ import "io"
 import "bytes"
 
 import (
-	"github.com/RaivoKinne/Chatify/web/templates/layout"
+	"github.com/RaivoKinne/Friends/web/templates/layout"
 )
 
 func Register(err string) templ.Component {
@@ -56,7 +56,7 @@ func Register(err string) templ.Component {
 					return templ_7745c5c3_Err
 				}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><div><button type=\"submit\" class=\"px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline w-[400px]\">Register</button></div></form></div>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><div><button type=\"submit\" class=\"px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline w-[400px]\">Register</button></div><div class=\"flex gap-4\"><p>Already have an account?</p><a href=\"/login\" class=\"text-blue-500\">Login</a></div></form></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

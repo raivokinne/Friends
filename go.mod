@@ -1,4 +1,4 @@
-module github.com/RaivoKinne/Chatify
+module github.com/RaivoKinne/Friends
 
 go 1.21.6
 

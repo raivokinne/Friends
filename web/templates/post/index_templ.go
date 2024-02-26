@@ -11,9 +11,10 @@ import "io"
 import "bytes"
 
 import (
-	"github.com/RaivoKinne/Chatify/internal/database/model"
-	"github.com/RaivoKinne/Chatify/web/templates/components"
-	"github.com/RaivoKinne/Chatify/web/templates/layout"
+	"fmt"
+	"github.com/RaivoKinne/Friends/internal/database/model"
+	"github.com/RaivoKinne/Friends/web/templates/components"
+	"github.com/RaivoKinne/Friends/web/templates/layout"
 	"github.com/dustin/go-humanize"
 )
 
@@ -52,26 +53,48 @@ func Index(posts []model.Post) templ.Component {
 				var templ_7745c5c3_Var3 string
 				templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(post.Content)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/post/index.templ`, Line: 21, Col: 41}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/post/index.templ`, Line: 32, Col: 41}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h2><p class=\"text-gray-500\">")
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h2><p class=\"text-gray-500\">by ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var4 string
-				templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(humanize.Time(post.CreatedAt))
+				templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(post.Username)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/post/index.templ`, Line: 22, Col: 63}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/post/index.templ`, Line: 33, Col: 50}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></div><p class=\"text-gray-500\"><a href=\"/post/{ post.ID }\" class=\"text-blue-500 hover:text-blue-600\">Reply</a></p></li>")
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p><p class=\"text-gray-500\">")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var5 string
+				templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(humanize.Time(post.CreatedAt))
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/post/index.templ`, Line: 34, Col: 63}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></div><form action=\"")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var6 templ.SafeURL = templ.SafeURL(fmt.Sprintf("/post/%d", post.ID))
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(string(templ_7745c5c3_Var6)))
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" method=\"POST\"><input type=\"submit\" value=\"Delete\" class=\"px-4 py-2 mt-2 text-white bg-red-500 rounded-md hover:bg-red-600 focus:outline-none focus:bg-red-600\"></form></li>")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}

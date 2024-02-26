@@ -9,12 +9,12 @@ import (
 	"github.com/labstack/echo/v4"
 	"golang.org/x/crypto/bcrypt"
 
-	"github.com/RaivoKinne/Chatify/internal/database"
-	"github.com/RaivoKinne/Chatify/internal/database/model"
-	"github.com/RaivoKinne/Chatify/web/templates"
-	"github.com/RaivoKinne/Chatify/web/templates/auth/login"
-	"github.com/RaivoKinne/Chatify/web/templates/auth/register"
-	"github.com/RaivoKinne/Chatify/web/templates/post"
+	"github.com/RaivoKinne/Friends/internal/database"
+	"github.com/RaivoKinne/Friends/internal/database/model"
+	"github.com/RaivoKinne/Friends/web/templates"
+	"github.com/RaivoKinne/Friends/web/templates/auth/login"
+	"github.com/RaivoKinne/Friends/web/templates/auth/register"
+	"github.com/RaivoKinne/Friends/web/templates/post"
 )
 
 var hPassword []byte
@@ -258,4 +258,51 @@ func LogoutHandler(c echo.Context) error {
 	sess.Save(c.Request(), c.Response())
 
 	return c.Redirect(302, "/")
+}
+
+func DeletePostHandler(c echo.Context) error {
+	sess, err := session.Get("session", c)
+	if err != nil {
+		log.Println("Error getting session:", err)
+		return err
+	}
+
+	if auth, ok := sess.Values["Authenticated"].(bool); !ok || !auth {
+		log.Println("User is not authenticated")
+		return c.Redirect(http.StatusFound, "/")
+	}
+
+	userId, ok := sess.Values["UserId"].(int)
+
+	if !ok {
+		log.Println("User ID is nil or not of type int")
+		return c.Redirect(http.StatusFound, "/")
+	}
+
+	db, err := database.Connect()
+
+	if err != nil {
+		log.Println("Error connecting to the database:", err)
+		return err
+	}
+
+	defer db.Close()
+
+	stmt, err := db.Prepare("DELETE FROM posts WHERE id = ? AND user_id = ?")
+
+	if err != nil {
+		log.Println("Error preparing statement:", err)
+		return err
+	}
+
+	defer stmt.Close()
+
+	_, err = stmt.Exec(c.Param("id"), userId)
+
+	if err != nil {
+		log.Println("Error deleting post:", err)
+		return err
+	}
+
+	return c.Redirect(http.StatusFound, "/post")
 }

@@ -1,7 +1,7 @@
 package register 
 
 import (
-	"github.com/RaivoKinne/Chatify/web/templates/layout"
+	"github.com/RaivoKinne/Friends/web/templates/layout"
 )
 
 templ Register(err string) {
@@ -41,6 +41,10 @@ templ Register(err string) {
 					<button type="submit" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline w-[400px]">
 						Register
 					</button>
+				</div>
+				<div class="flex gap-4">
+					<p>Already have an account?</p>
+					<a href="/login" class="text-blue-500">Login</a>
 				</div>
 			</form>
 		</div>

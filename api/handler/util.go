@@ -8,7 +8,7 @@ import (
 	"github.com/a-h/templ"
 	"github.com/labstack/echo/v4"
 
-	"github.com/RaivoKinne/Chatify/internal/database/model"
+	"github.com/RaivoKinne/Friends/internal/database/model"
 )
 
 func Render(c echo.Context, component templ.Component) error {

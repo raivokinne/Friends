@@ -11,7 +11,7 @@ import "io"
 import "bytes"
 
 import (
-	"github.com/RaivoKinne/Chatify/web/templates/layout"
+	"github.com/RaivoKinne/Friends/web/templates/layout"
 )
 
 func Login(err string) templ.Component {

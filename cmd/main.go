@@ -5,18 +5,19 @@ import (
 	"github.com/labstack/echo-contrib/session"
 	"github.com/labstack/echo/v4"
 
-	"github.com/RaivoKinne/Chatify/api/handler"
-	"github.com/RaivoKinne/Chatify/api/middleware"
+	"github.com/RaivoKinne/Friends/api/handler"
+	"github.com/RaivoKinne/Friends/api/middleware"
 )
 
 func main() {
 	router := echo.New()
-	router.Static("/dist", "web/static/dist")
+	router.Static("/static", "web/static/")
 	router.Use(session.Middleware(sessions.NewCookieStore([]byte("secret"))))
 	router.Debug = true
 	router.RouteNotFound("/*", handler.NotFound)
 	router.GET("/post", middleware.AuthMiddleware(handler.PostPageHandler))
 	router.POST("/post/save", middleware.AuthMiddleware(handler.PostHandler))
+	router.POST("/post/:id", middleware.AuthMiddleware(handler.DeletePostHandler))
 	router.GET("/", handler.RegisterPageHandler)
 	router.POST("/register", handler.RegisterHandler)
 	router.GET("/login", handler.LoginPageHandler)
