@@ -1,0 +1,22 @@
+package components
+
+import "github.com/RaivoKinne/Friends/internal/database/model"
+import "fmt"
+import "github.com/dustin/go-humanize"
+
+templ PostList(UserId int, currentUserId int, post model.Post) {
+	<article class="flex flex-col gap-4">
+		<div class="p-4 w-[500px] h-[200px] bg-white border border-gray-200 rounded-md shadows">
+			<div class="flex flex-col gap-2">
+				<h2 class="text-lg">{ post.Content }</h2>
+				<p class="text-gray-500">by { post.Username }</p>
+				<p class="text-gray-500">{ humanize.Time(post.CreatedAt) }</p>
+			</div>
+			if post.UserID == currentUserId {
+				<form action={ templ.SafeURL(fmt.Sprintf("/post/%d", post.ID)) } method="POST">
+					<input type="submit" value="Delete" class="px-4 py-2 mt-2 text-white bg-red-500 rounded-md hover:bg-red-600 focus:outline-none focus:bg-red-600"/>
+				</form>
+			}
+		</div>
+	</article>
+}

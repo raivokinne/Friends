@@ -10,7 +10,7 @@ import "context"
 import "io"
 import "bytes"
 
-func Navbar() templ.Component {
+func PostCreateForm() templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -23,7 +23,7 @@ func Navbar() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<nav class=\"flex items-center justify-center bg-white border-gray-200 border-b h-[80px]\"><div class=\"flex justify-between items-center w-full mx-[100px]\"><div><a href=\"/\" class=\"text-black\">Friends</a></div><div><input type=\"text\" placeholder=\"Search\" class=\"w-[800px] p-2 px-4 rounded-full border-gray-500 border text-black\"></div><ul class=\"flex gap-4\"><li><a href=\"/profile\" class=\"text-black\">Profile</a></li><li><a href=\"/logout\" class=\"text-black\">Logout</a></li></ul></div></nav>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<form action=\"/posts\" method=\"POST\" autocomplete=\"off\"><fieldset class=\"flex gap-2 w-[500px]\"><input type=\"text\" name=\"content\" placeholder=\"What&#39;s on your mind?\" class=\"w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500\"> <input type=\"submit\" value=\"Post\" class=\"px-4 py-2 mt-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600\"></fieldset></form>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
